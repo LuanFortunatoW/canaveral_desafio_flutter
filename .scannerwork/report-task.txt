@@ -1,0 +1,6 @@
+projectKey=flutter-movements
+serverUrl=https://sonarqube.dev.warren.com.br:8443
+serverVersion=9.3.0.51899
+dashboardUrl=https://sonarqube.dev.warren.com.br:8443/dashboard?id=flutter-movements
+ceTaskId=AYGMkue1Zd47mcEAFTZz
+ceTaskUrl=https://sonarqube.dev.warren.com.br:8443/api/ce/task?id=AYGMkue1Zd47mcEAFTZz
