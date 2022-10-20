@@ -6,7 +6,7 @@ class TransactionsEndpointImp implements TransactionsEndpoint {
   @override
   Future<Response> getOne() async {
     return Response(
-      requestOptions: RequestOptions(path: '/'),
+      requestOptions: RequestOptions(path: ''),
       data: {
         "id": "5f89f9f23e427f64fc2ea101",
         "title": "Depósito",
@@ -23,7 +23,7 @@ class TransactionsEndpointImp implements TransactionsEndpoint {
   @override
   Future<Response> listAll() async {
     return Response(
-      requestOptions: RequestOptions(path: '/'),
+      requestOptions: RequestOptions(path: ''),
       data: [
         {
           "id": "5f89f9f257fe42957bf6dbfd",

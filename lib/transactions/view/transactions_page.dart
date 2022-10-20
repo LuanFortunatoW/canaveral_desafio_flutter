@@ -7,12 +7,11 @@ class TransactionsPage extends StatelessWidget {
   static const String route = '/transactions_page';
 
   static Route? navigate() {
-    PageRouteBuilder(
+    return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
         return const TransactionsPage();
       },
     );
-    return null;
   }
 
   @override

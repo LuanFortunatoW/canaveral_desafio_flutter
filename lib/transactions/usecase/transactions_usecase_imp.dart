@@ -17,6 +17,7 @@ class TransactionsUsecaseImp implements TransactionsUsecase {
   @override
   Future<List<TransactionViewData>> listAll() async {
     final response = await _repository.listAll();
+
     return response.toViewData();
   }
 }
