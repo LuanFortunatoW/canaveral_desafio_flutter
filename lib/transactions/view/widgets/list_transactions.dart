@@ -1,25 +1,25 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:api_example/shared/fakeApi/utils/formaters.dart';
+import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
 
 import '../../models/transaction_view_data.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ListTransactions extends StatelessWidget {
+class ListTransactions extends ConsumerWidget {
   const ListTransactions({
     Key? key,
-    required this.data,
   }) : super(key: key);
 
-  final List<TransactionViewData> data;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(listAllTransactionsProvider).value;
     return Expanded(
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: data.length,
+        itemCount: data!.length,
         itemBuilder: (context, index) {
           TransactionViewData transaction = data[index];
           return _ListTileTransaction(transaction: transaction);

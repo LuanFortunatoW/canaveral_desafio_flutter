@@ -1,14 +1,13 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:nebraska/nebraska.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class TransactionsInfoContainer extends StatelessWidget {
   const TransactionsInfoContainer({
     Key? key,
-    required this.transactionsLenght,
   }) : super(key: key);
-
-  final int transactionsLenght;
 
   @override
   Widget build(BuildContext context) {
@@ -44,25 +43,23 @@ class TransactionsInfoContainer extends StatelessWidget {
             thickness: 1,
             color: theme.colors.core.divider.opacity,
           ),
-          _InfoText(transactionsLenght: transactionsLenght),
+          const _InfoText(),
         ],
       ),
     );
   }
 }
 
-class _InfoText extends StatelessWidget {
+class _InfoText extends ConsumerWidget {
   const _InfoText({
     Key? key,
-    required this.transactionsLenght,
   }) : super(key: key);
 
-  final int transactionsLenght;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final NebraskaThemeData theme =
         NebraskaTheme.of(context).copyWith(ContextTheme.brand);
+    final int length = ref.watch(listAllTransactionsProvider).value!.length;
 
     return Flexible(
       child: RichText(
@@ -71,7 +68,7 @@ class _InfoText extends StatelessWidget {
           style: theme.typography.p5,
           children: [
             TextSpan(
-              text: "$transactionsLenght movimentações",
+              text: "$length movimentações",
               style: theme.typography.p5.copyWith(
                 fontWeight: FontWeight.w600,
               ),

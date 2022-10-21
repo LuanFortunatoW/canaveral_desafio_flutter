@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
       darkTheme: NebraskaThemeData(brightness: Brightness.dark).themeData,
       debugShowCheckedModeBanner: false,
       initialRoute: TransactionsPage.route,
-      onGenerateRoute: (settings) {
-        return AppRoutes.onGenerateRoute(settings);
-      },
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }

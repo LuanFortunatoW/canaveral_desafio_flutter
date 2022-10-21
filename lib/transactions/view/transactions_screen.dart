@@ -20,12 +20,8 @@ class TransactionsScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: theme.colors.core.background.secondary,
       body: transactions.when(
-        data: (data) {
-          return TransactionsBody(data: data);
-        },
-        error: (error, stackTrace) {
-          return const _LoadingErrorHelper();
-        },
+        data: (data) => const TransactionsBody(),
+        error: (error, stackTrace) => const _LoadingErrorHelper(),
         loading: () => const CircularProgressIndicator(),
       ),
     );
