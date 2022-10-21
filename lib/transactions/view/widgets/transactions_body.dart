@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/transaction_view_data.dart';
 import 'header_stack.dart';
+// ignore: depend_on_referenced_packages
 import 'package:nebraska/nebraska.dart';
 
 import 'list_transactions.dart';
