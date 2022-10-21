@@ -1,3 +1,4 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:nebraska/nebraska.dart';
 
@@ -12,6 +13,12 @@ class HeaderContainer extends StatelessWidget {
         NebraskaTheme.of(context).copyWith(ContextTheme.brand);
 
     return Container(
+      padding: EdgeInsets.only(
+        top: theme.sizes.spacing.x350,
+        bottom: theme.sizes.spacing.x700,
+        right: theme.sizes.spacing.x350,
+        left: theme.sizes.spacing.x350,
+      ),
       color: theme.colors.context.primary,
       child: const SectionTitle(
         title: _TitleTexts(),
@@ -36,11 +43,15 @@ class _TitleTexts extends StatelessWidget {
       children: [
         Text(
           'Mobile',
-          style: theme.typography.h4,
+          style: theme.typography.h4.copyWith(
+            color: theme.colors.context.overPrimary,
+          ),
         ),
         Text(
           'chalenge accelerate',
-          style: theme.typography.h4,
+          style: theme.typography.h4.copyWith(
+            color: theme.colors.context.overPrimary,
+          ),
         ),
       ],
     );
@@ -63,9 +74,9 @@ class _IconDetail extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.colors.core.background.primary,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(theme.sizes.radius.x300),
-          topRight: Radius.circular(theme.sizes.radius.x300),
-          bottomRight: Radius.circular(theme.sizes.radius.x300),
+          topLeft: Radius.circular(theme.sizes.radius.x400),
+          topRight: Radius.circular(theme.sizes.radius.x400),
+          bottomRight: Radius.circular(theme.sizes.radius.x400),
         ),
       ),
       child: Transform.rotate(

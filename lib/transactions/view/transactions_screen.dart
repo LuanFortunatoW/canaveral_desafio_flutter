@@ -1,11 +1,12 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nebraska/nebraska.dart';
 
-import 'widgets/header_container.dart';
-import 'widgets/list_transactions.dart';
+import 'widgets/transactions_body.dart';
 
 class TransactionsScreen extends ConsumerWidget {
   const TransactionsScreen({Key? key}) : super(key: key);
@@ -20,23 +21,10 @@ class TransactionsScreen extends ConsumerWidget {
       backgroundColor: theme.colors.core.background.secondary,
       body: transactions.when(
         data: (data) {
-          return Column(
-            children: [
-              const HeaderContainer(),
-              const _ListTitle(),
-              Expanded(
-                child: ListTransactions(data: data),
-              )
-            ],
-          );
+          return TransactionsBody(data: data);
         },
         error: (error, stackTrace) {
-          return HelperView(
-            icon: NebraskaIcon.instance.schemaDefault.ea0160,
-            type: HelperViewType.negative,
-            title: 'Erro',
-            description: 'Algo deu errado',
-          );
+          return const _LoadingErrorHelper();
         },
         loading: () => const CircularProgressIndicator(),
       ),
@@ -44,21 +32,18 @@ class TransactionsScreen extends ConsumerWidget {
   }
 }
 
-class _ListTitle extends StatelessWidget {
-  const _ListTitle({
+class _LoadingErrorHelper extends StatelessWidget {
+  const _LoadingErrorHelper({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SectionTitle(
-      title: const Text('Movimentações'),
-      detailTitle: FilterSelect(
-        label: 'Filtros',
-        checked: false,
-        disabled: false,
-        onPressed: () {},
-      ),
+    return HelperView(
+      icon: NebraskaIcon.instance.schemaDefault.ea0160,
+      type: HelperViewType.negative,
+      title: 'Erro',
+      description: 'Algo deu errado',
     );
   }
 }

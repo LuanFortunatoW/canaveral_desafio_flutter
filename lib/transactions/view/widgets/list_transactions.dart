@@ -1,8 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages
+import 'package:api_example/shared/fakeApi/utils/formaters.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
 
-import '../../../shared/fakeApi/utils/formaters.dart';
 import '../../models/transaction_view_data.dart';
 
 class ListTransactions extends StatelessWidget {
@@ -15,19 +16,15 @@ class ListTransactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NebraskaThemeData theme =
-        NebraskaTheme.of(context).copyWith(ContextTheme.brand);
-    return ListView.separated(
-      separatorBuilder: (context, index) {
-        return DividerHorizontal(
-          spacing: theme.sizes.spacing.x500,
-        );
-      },
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        TransactionViewData transaction = data[index];
-        return _ListTileTransaction(transaction: transaction);
-      },
+    return Expanded(
+      child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          TransactionViewData transaction = data[index];
+          return _ListTileTransaction(transaction: transaction);
+        },
+      ),
     );
   }
 }
@@ -42,31 +39,44 @@ class _ListTileTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RowChipStatus(
-      title: Text(
-        transaction.title,
-      ),
-      subtitle: Text(
-        '${transaction.from} para ${transaction.to}',
-      ),
-      titleDetail: Text(
-        Formaters.simpleCurrencyFormater(
-          transaction.amount.toDouble(),
+    final NebraskaThemeData theme =
+        NebraskaTheme.of(context).copyWith(ContextTheme.brand);
+
+    return Column(
+      children: [
+        DividerHorizontal(
+          spacing: theme.sizes.spacing.x400,
         ),
-      ),
-      chip: ChipStatus(
-        chipText: transaction.status.replaceFirst(
-          transaction.status.characters.first,
-          transaction.status.characters.first.toUpperCase(),
+        RowChipStatus(
+          title: Text(
+            transaction.title,
+            style: theme.typography.p3,
+          ),
+          subtitle: Text(
+            '${transaction.from} para ${transaction.to}',
+            style: theme.typography.u1,
+          ),
+          titleDetail: Text(
+            Formaters.simpleCurrencyFormater(
+              transaction.amount.toDouble(),
+            ),
+            style: theme.typography.h4,
+          ),
+          chip: ChipStatus(
+            chipText: transaction.status.replaceFirst(
+              transaction.status.characters.first,
+              transaction.status.characters.first.toUpperCase(),
+            ),
+            type: transaction.status == 'created'
+                ? ChipStatusType.information
+                : transaction.status == 'processing'
+                    ? ChipStatusType.alert
+                    : transaction.status == 'processed'
+                        ? ChipStatusType.positive
+                        : ChipStatusType.negative,
+          ),
         ),
-        type: transaction.status == 'created'
-            ? ChipStatusType.information
-            : transaction.status == 'processing'
-                ? ChipStatusType.alert
-                : transaction.status == 'processed'
-                    ? ChipStatusType.positive
-                    : ChipStatusType.negative,
-      ),
+      ],
     );
   }
 }
