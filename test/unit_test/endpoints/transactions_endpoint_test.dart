@@ -30,7 +30,6 @@ void main() {
     dioMock = DioMock();
     transactionsEndpoint = TransactionsEndpointImp(
       dioMock,
-      faker.internet.httpUrl(),
     );
   });
 
