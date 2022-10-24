@@ -12,7 +12,7 @@ TransactionResponse _$TransactionResponseFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       description: json['description'] as String,
       status: json['status'] as String,
-      amount: Decimal.parse(json['amount'].toString()),
+      amount: Decimal.fromJson(json['amount'].toString()),
       date: DateTime.parse(json['date'] as String),
       from: json['from'] as String,
       to: json['to'] as String,

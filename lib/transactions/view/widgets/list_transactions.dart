@@ -1,10 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:api_example/shared/fakeApi/utils/formaters.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
 
+import '../../../shared/utils/formaters.dart';
 import '../../models/transaction_view_data.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
