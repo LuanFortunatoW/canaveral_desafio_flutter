@@ -5,21 +5,19 @@ import 'transactions_endpoint.dart';
 
 class TransactionsEndpointImp implements TransactionsEndpoint {
   final Dio _dio;
-  final String _baseUrl;
 
   TransactionsEndpointImp(
     this._dio,
-    this._baseUrl,
   );
 
   @override
   Future<Response> getOne(int id) async {
-    return _dio.get('$_baseUrl/transactions/$id');
+    return _dio.get('/transactions/$id');
   }
 
   @override
   Future<Response> listAll() async {
-    final response = _dio.get('$_baseUrl/transactions');
+    final response = _dio.get('/transactions');
     return response;
   }
 }

@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:nebraska/nebraska.dart';
 
@@ -42,13 +43,13 @@ class _TitleTexts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Mobile',
+          TransactionsStrings.of(context)!.mobile,
           style: theme.typography.h4.copyWith(
             color: theme.colors.context.overPrimary,
           ),
         ),
         Text(
-          'chalenge accelerate',
+          TransactionsStrings.of(context)!.appTitle,
           style: theme.typography.h4.copyWith(
             color: theme.colors.context.overPrimary,
           ),
