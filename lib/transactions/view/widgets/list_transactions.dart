@@ -1,6 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 import 'package:api_example/l10n/transactions_strings.dart';
+import 'package:api_example/transactions/providers/filter_list_provider.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
+import 'package:api_example/transactions/providers/text_filter_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
@@ -14,13 +16,54 @@ class ListTransactions extends ConsumerWidget {
     Key? key,
   }) : super(key: key);
 
+  List<TransactionViewData> filterDataByText(
+    List<TransactionViewData> data,
+    String textFilter,
+  ) {
+    if (textFilter.isNotEmpty) {
+      List<TransactionViewData> filteredData = [];
+      for (var transaction in data) {
+        if (transaction.title.toUpperCase().contains(
+              textFilter.toUpperCase(),
+            )) {
+          filteredData.add(transaction);
+        }
+      }
+      return filteredData;
+    }
+    return data;
+  }
+
+  List<TransactionViewData> filterDataByStatus(
+    List<TransactionViewData> data,
+    Set<String> statusList,
+  ) {
+    if (statusList.isNotEmpty) {
+      List<TransactionViewData> filteredData = [];
+      for (var transaction in data) {
+        if (statusList.contains(transaction.status)) {
+          filteredData.add(transaction);
+        }
+      }
+      return filteredData;
+    }
+    return data;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(listAllTransactionsProvider).value;
+    List<TransactionViewData> data =
+        ref.watch(listAllTransactionsProvider).value!;
+    final textFilter = ref.watch(textFilterProvider);
+    final statusFilter = ref.watch(filterListProvider);
+
+    data = filterDataByText(data, textFilter);
+    data = filterDataByStatus(data, statusFilter);
+
     return Expanded(
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: data!.length,
+        itemCount: data.length,
         itemBuilder: (context, index) {
           TransactionViewData transaction = data[index];
           return _ListTileTransaction(transaction: transaction);

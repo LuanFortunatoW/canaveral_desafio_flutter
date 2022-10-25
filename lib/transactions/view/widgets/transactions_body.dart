@@ -1,4 +1,5 @@
 import 'package:api_example/l10n/transactions_strings.dart';
+import 'package:api_example/transactions/view/widgets/transactions_filter.dart';
 import 'package:flutter/material.dart';
 
 import 'header_stack.dart';
@@ -39,10 +40,7 @@ class _ListTitle extends StatelessWidget {
         TransactionsStrings.of(context)!.transactions,
         style: theme.typography.p2,
       ),
-      detailTitle: FilterSelect(
-        label: TransactionsStrings.of(context)!.filters,
-        onPressed: () {},
-      ),
+      detailTitle: const TransactionsFilter(),
     );
   }
 }
