@@ -77,18 +77,25 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Título'),
+            Text(
+              'Título',
+              style: theme.typography.h3,
+            ),
             TextField(
               decoration: const InputDecoration(
                 border: InputBorder.none,
               ),
+              style: theme.typography.u2,
               controller: controller,
               onChanged: (value) {
                 ref.read(textFilterProvider.notifier).state = controller.text;
               },
             ),
             const Divider(),
-            const Text('Stauts'),
+            Text(
+              'Status',
+              style: theme.typography.p4,
+            ),
             FilterList(
               multiple: true,
               options: generateFilterData(data, filterList),
