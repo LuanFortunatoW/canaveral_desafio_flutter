@@ -1,7 +1,6 @@
-import 'package:api_example/shared/fakeApi/enpoint/transactions_endpoint.dart';
-import 'package:api_example/shared/fakeApi/response/get_one_transaction_response.dart';
-import 'package:api_example/shared/fakeApi/response/list_all_transactions_response.dart';
-import 'package:api_example/shared/fakeApi/response/transaction_response.dart';
+import 'package:api_example/shared/api/enpoint/transactions_endpoint.dart';
+import 'package:api_example/shared/api/response/get_one_transaction_response.dart';
+import 'package:api_example/shared/api/response/list_all_transactions_response.dart';
 import 'package:api_example/transactions/repository/transactions_repository.dart';
 
 class TransactionsRepositoryImp implements TransactionsRepository {
@@ -10,8 +9,8 @@ class TransactionsRepositoryImp implements TransactionsRepository {
   TransactionsRepositoryImp(this._endpoint);
 
   @override
-  Future<GetOneTransactionResponse> getOne() async {
-    final response = await _endpoint.getOne();
+  Future<GetOneTransactionResponse> getOne(int id) async {
+    final response = await _endpoint.getOne(id);
     return GetOneTransactionResponse.fromJson(response.data);
   }
 
@@ -19,14 +18,6 @@ class TransactionsRepositoryImp implements TransactionsRepository {
   Future<ListAllTransactionsResponse> listAll() async {
     final response = await _endpoint.listAll();
 
-    return ListAllTransactionsResponse(
-      transactions: List.from(
-        response.data
-            .map(
-              (json) => TransactionResponse.fromJson(json),
-            )
-            .toList(),
-      ),
-    );
+    return ListAllTransactionsResponse.fromJson(response.data);
   }
 }

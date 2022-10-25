@@ -1,0 +1,23 @@
+{
+  "languageSymbol" : "pt_BR",
+  "appTitle" : "chalenge accelerate",
+  "mobile" : "Mobile",
+  "detailsStart" : "São",
+  "detailsTransactions" : "movimentações",
+  "detailsEnd" : "disponíveis para visualização",
+  "filters" : "Filtros",
+  "transactions" : "Movimentações",
+  "toTransfer" : "{from} para {to}",
+  "@toTransfer": {
+    "placeholders": {
+      "from": {
+        "type": "String",
+        "example": "Ferias"
+      },
+      "to": {
+        "type": "String",
+        "example": "Ferias"
+      }
+    } 
+  }
+}

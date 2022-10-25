@@ -1,10 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:api_example/shared/fakeApi/utils/formaters.dart';
+import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
 
+import '../../../shared/utils/formaters.dart';
 import '../../models/transaction_view_data.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -53,12 +54,16 @@ class _ListTileTransaction extends StatelessWidget {
             style: theme.typography.p3,
           ),
           subtitle: Text(
-            '${transaction.from} para ${transaction.to}',
+            TransactionsStrings.of(context)!.toTransfer(
+              transaction.from,
+              transaction.to,
+            ),
             style: theme.typography.u1,
           ),
           titleDetail: Text(
             Formaters.simpleCurrencyFormater(
               transaction.amount.toDouble(),
+              context,
             ),
             style: theme.typography.h4,
           ),

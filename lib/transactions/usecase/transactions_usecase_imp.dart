@@ -9,8 +9,8 @@ class TransactionsUsecaseImp implements TransactionsUsecase {
   TransactionsUsecaseImp(this._repository);
 
   @override
-  Future<TransactionViewData> getOne() async {
-    final response = await _repository.getOne();
+  Future<TransactionViewData> getOne(int id) async {
+    final response = await _repository.getOne(id);
     return response.toViewData();
   }
 

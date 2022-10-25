@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 
 abstract class TransactionsEndpoint {
-  Future<Response> getOne();
+  Future<Response> getOne(int id);
 
   Future<Response> listAll();
 }

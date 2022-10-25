@@ -2,6 +2,7 @@
 
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_core/flutter_core.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nebraska/nebraska.dart';
@@ -38,8 +39,8 @@ class _LoadingErrorHelper extends StatelessWidget {
     return HelperView(
       icon: NebraskaIcon.instance.schemaDefault.ea0160,
       type: HelperViewType.negative,
-      title: 'Erro',
-      description: 'Algo deu errado',
+      title: CoreStrings.of(context)!.failureScreenTitle,
+      description: CoreStrings.of(context)!.failureScreenSubTitle,
     );
   }
 }

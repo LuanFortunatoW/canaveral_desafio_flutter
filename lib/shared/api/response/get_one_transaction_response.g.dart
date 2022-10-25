@@ -9,12 +9,13 @@ part of 'get_one_transaction_response.dart';
 GetOneTransactionResponse _$GetOneTransactionResponseFromJson(
         Map<String, dynamic> json) =>
     GetOneTransactionResponse(
-      transaction: TransactionResponse.fromJson(
-          json['transaction'] as Map<String, dynamic>),
+      transactions: (json['transactions'] as List<dynamic>)
+          .map((e) => TransactionResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$GetOneTransactionResponseToJson(
         GetOneTransactionResponse instance) =>
     <String, dynamic>{
-      'transaction': instance.transaction,
+      'transactions': instance.transactions,
     };

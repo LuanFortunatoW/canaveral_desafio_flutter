@@ -1,3 +1,4 @@
+import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:flutter/material.dart';
 
 import 'header_stack.dart';
@@ -35,11 +36,11 @@ class _ListTitle extends StatelessWidget {
 
     return SectionTitle(
       title: Text(
-        'Movimentações',
+        TransactionsStrings.of(context)!.transactions,
         style: theme.typography.p2,
       ),
       detailTitle: FilterSelect(
-        label: 'Filtros',
+        label: TransactionsStrings.of(context)!.filters,
         onPressed: () {},
       ),
     );

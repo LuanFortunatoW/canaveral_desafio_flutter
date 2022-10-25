@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:nebraska/nebraska.dart';
@@ -64,17 +65,18 @@ class _InfoText extends ConsumerWidget {
     return Flexible(
       child: RichText(
         text: TextSpan(
-          text: "São ",
+          text: "${TransactionsStrings.of(context)!.detailsStart} ",
           style: theme.typography.p5,
           children: [
             TextSpan(
-              text: "$length movimentações",
+              text:
+                  "$length ${TransactionsStrings.of(context)!.detailsTransactions}",
               style: theme.typography.p5.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             TextSpan(
-                text: "\ndisponíveis para visualização",
+                text: "\n${TransactionsStrings.of(context)!.detailsEnd}",
                 style: theme.typography.p5)
           ],
         ),

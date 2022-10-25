@@ -9,7 +9,7 @@ part of 'list_all_transactions_response.dart';
 ListAllTransactionsResponse _$ListAllTransactionsResponseFromJson(
         Map<String, dynamic> json) =>
     ListAllTransactionsResponse(
-      transactions: (json['transactions'] as List<dynamic>)
+      transaction: (json['transaction'] as List<dynamic>)
           .map((e) => TransactionResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -17,5 +17,5 @@ ListAllTransactionsResponse _$ListAllTransactionsResponseFromJson(
 Map<String, dynamic> _$ListAllTransactionsResponseToJson(
         ListAllTransactionsResponse instance) =>
     <String, dynamic>{
-      'transactions': instance.transactions,
+      'transaction': instance.transaction,
     };
