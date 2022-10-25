@@ -68,7 +68,7 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
     final data = ref.watch(listAllTransactionsProvider).value!;
 
     return ContentBottomSheet(
-      title: 'Filtros',
+      title: TransactionsStrings.of(context)!.filters,
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: theme.sizes.spacing.x500,
@@ -78,7 +78,7 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Título',
+              TransactionsStrings.of(context)!.transactionTitleFilter,
               style: theme.typography.h3,
             ),
             TextField(
@@ -93,7 +93,7 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
             ),
             const Divider(),
             Text(
-              'Status',
+              TransactionsStrings.of(context)!.transactionStatusFilter,
               style: theme.typography.p4,
             ),
             FilterList(
@@ -110,7 +110,7 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
             Align(
               alignment: Alignment.center,
               child: ButtonPrimary(
-                label: 'Filtrar',
+                label: TransactionsStrings.of(context)!.confirmFilter,
                 onPressed: () {
                   Navigator.pop(context, selectedValues);
                 },

@@ -32,4 +32,16 @@ class TransactionsStringsPt extends TransactionsStrings {
   String toTransfer(String from, String to) {
     return '$from para $to';
   }
+
+  @override
+  String get titleBottomSheetFilter => 'Filtros';
+
+  @override
+  String get transactionTitleFilter => 'Título';
+
+  @override
+  String get transactionStatusFilter => 'Status';
+
+  @override
+  String get confirmFilter => 'Filtrar';
 }
