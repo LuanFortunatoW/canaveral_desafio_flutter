@@ -44,4 +44,10 @@ class TransactionsStringsPt extends TransactionsStrings {
 
   @override
   String get confirmFilter => 'Filtrar';
+
+  @override
+  String get transferedFrom => 'Transferido de';
+
+  @override
+  String get to => 'Para';
 }
