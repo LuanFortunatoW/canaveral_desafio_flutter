@@ -1,4 +1,5 @@
 import 'package:api_example/transactions/view/transactions_page.dart';
+import 'package:api_example/transactions/view/widgets/bottom_sheet_transaction_info.dart';
 import 'package:api_example/transactions/view/widgets/header_stack.dart';
 import 'package:api_example/transactions/view/widgets/list_transactions.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -31,6 +32,19 @@ void main() {
           final helperView = find.byType(HelperView);
 
           expect(helperView, findsOneWidget);
+        },
+      );
+      testWidgets(
+        'WHEN click transaction THEN ensure return BottomSheetTransactionInfo ',
+        (widgetTester) async {
+          await loadPage(widgetTester, const TransactionsPage());
+
+          await widgetTester.tap(find.byType(RowChipStatus));
+          await widgetTester.pumpAndSettle();
+
+          final bottomSheet = find.byType(BottomSheetTransactionInfo);
+
+          expect(bottomSheet, findsOneWidget);
         },
       );
     },

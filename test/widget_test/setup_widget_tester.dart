@@ -1,15 +1,18 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:api_example/routes/app_routes.dart';
-import 'package:api_example/transactions/models/transaction_view_data.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-// ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_core/l10n/l10n.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:nebraska/nebraska.dart';
 
-final listAllTransactionsErrorProvider =
-    FutureProvider<List<TransactionViewData>>(
-  (ref) => Future.error('Error'),
-);
+import 'fake_repository/fake_providers.dart';
 
 class SetupWidgetTester extends StatelessWidget {
   const SetupWidgetTester({
@@ -22,7 +25,21 @@ class SetupWidgetTester extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
+      overrides: [
+        listAllTransactionsProvider
+            .overrideWithProvider(listAllTransactionsFakeProvider),
+      ],
       child: MaterialApp(
+        supportedLocales: L10n.all,
+        localizationsDelegates: const [
+          TransactionsStrings.delegate,
+          CoreStrings.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        theme: NebraskaThemeData(brightness: Brightness.light).themeData,
+        darkTheme: NebraskaThemeData(brightness: Brightness.dark).themeData,
         onGenerateRoute: (settings) {
           return AppRoutes.onGenerateRoute(settings);
         },
@@ -54,6 +71,16 @@ class SetupErrorWidgetTester extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        supportedLocales: L10n.all,
+        localizationsDelegates: const [
+          TransactionsStrings.delegate,
+          CoreStrings.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        theme: NebraskaThemeData(brightness: Brightness.light).themeData,
+        darkTheme: NebraskaThemeData(brightness: Brightness.dark).themeData,
         onGenerateRoute: (settings) {
           return AppRoutes.onGenerateRoute(settings);
         },
