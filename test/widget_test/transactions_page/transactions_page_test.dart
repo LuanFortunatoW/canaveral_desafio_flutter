@@ -2,6 +2,7 @@ import 'package:api_example/transactions/view/transactions_page.dart';
 import 'package:api_example/transactions/view/widgets/bottom_sheet_transaction_info.dart';
 import 'package:api_example/transactions/view/widgets/header_stack.dart';
 import 'package:api_example/transactions/view/widgets/list_transactions.dart';
+import 'package:api_example/transactions/view/widgets/transactions_filter.dart';
 import 'package:flutter_test/flutter_test.dart';
 // ignore: depend_on_referenced_packages
 import 'package:nebraska/nebraska.dart';
@@ -34,6 +35,21 @@ void main() {
           expect(helperView, findsOneWidget);
         },
       );
+
+      testWidgets(
+        'WHEN click filter THEN ensure return BottomSheetFilter ',
+        (widgetTester) async {
+          await loadPage(widgetTester, const TransactionsPage());
+
+          await widgetTester.tap(find.byType(TransactionsFilter));
+          await widgetTester.pumpAndSettle();
+
+          final bottomSheet = find.byType(ContentBottomSheet);
+
+          expect(bottomSheet, findsOneWidget);
+        },
+      );
+
       testWidgets(
         'WHEN click transaction THEN ensure return BottomSheetTransactionInfo ',
         (widgetTester) async {
