@@ -144,6 +144,30 @@ abstract class TransactionsStrings {
   /// In pt, this message translates to:
   /// **'{from} para {to}'**
   String toTransfer(String from, String to);
+
+  /// No description provided for @titleBottomSheetFilter.
+  ///
+  /// In pt, this message translates to:
+  /// **'Filtros'**
+  String get titleBottomSheetFilter;
+
+  /// No description provided for @transactionTitleFilter.
+  ///
+  /// In pt, this message translates to:
+  /// **'Título'**
+  String get transactionTitleFilter;
+
+  /// No description provided for @transactionStatusFilter.
+  ///
+  /// In pt, this message translates to:
+  /// **'Status'**
+  String get transactionStatusFilter;
+
+  /// No description provided for @confirmFilter.
+  ///
+  /// In pt, this message translates to:
+  /// **'Filtrar'**
+  String get confirmFilter;
 }
 
 class _TransactionsStringsDelegate extends LocalizationsDelegate<TransactionsStrings> {

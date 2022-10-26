@@ -19,5 +19,9 @@
         "example": "Ferias"
       }
     } 
-  }
+  },
+  "titleBottomSheetFilter" : "Filtros",
+  "transactionTitleFilter" : "Título",
+  "transactionStatusFilter" : "Status",
+  "confirmFilter" : "Filtrar"
 }
