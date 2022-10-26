@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:api_example/transactions/models/transaction_view_data.dart';
 import 'package:api_example/transactions/providers/filter_list_provider.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
@@ -33,6 +35,7 @@ class _TransactionsFilterState extends ConsumerState<TransactionsFilter> {
         setState(() => filterList.checked = true);
 
         final bottomSheetCallback = await showModalBottomSheet(
+          isScrollControlled: true,
           backgroundColor: theme.colors.core.background.secondary,
           context: context,
           builder: (context) {
@@ -67,56 +70,59 @@ class _BottomSheetFilterState extends ConsumerState<_BottomSheetFilter> {
     final filterList = ref.watch(filterListProvider.notifier);
     final data = ref.watch(listAllTransactionsProvider).value!;
 
-    return ContentBottomSheet(
-      title: TransactionsStrings.of(context)!.filters,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: theme.sizes.spacing.x500,
-          horizontal: theme.sizes.spacing.x600,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              TransactionsStrings.of(context)!.transactionTitleFilter,
-              style: theme.typography.h3,
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                border: InputBorder.none,
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: ContentBottomSheet(
+        title: TransactionsStrings.of(context)!.filters,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: theme.sizes.spacing.x500,
+            horizontal: theme.sizes.spacing.x600,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                TransactionsStrings.of(context)!.transactionTitleFilter,
+                style: theme.typography.h3,
               ),
-              style: theme.typography.u2,
-              controller: controller,
-              onChanged: (value) {
-                ref.read(textFilterProvider.notifier).state = controller.text;
-              },
-            ),
-            const Divider(),
-            Text(
-              TransactionsStrings.of(context)!.transactionStatusFilter,
-              style: theme.typography.p4,
-            ),
-            FilterList(
-              multiple: true,
-              options: generateFilterData(data, filterList),
-              callback: (options) {
-                setState(() {
-                  selectedValues = options;
-                });
-              },
-            ),
-            const Divider(),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: ButtonPrimary(
-                label: TransactionsStrings.of(context)!.confirmFilter,
-                onPressed: () {
-                  Navigator.pop(context, selectedValues);
+              TextField(
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                ),
+                style: theme.typography.u2,
+                controller: controller,
+                onChanged: (value) {
+                  ref.read(textFilterProvider.notifier).state = controller.text;
                 },
               ),
-            ),
-          ],
+              const Divider(),
+              Text(
+                TransactionsStrings.of(context)!.transactionStatusFilter,
+                style: theme.typography.p4,
+              ),
+              FilterList(
+                multiple: true,
+                options: generateFilterData(data, filterList),
+                callback: (options) {
+                  setState(() {
+                    selectedValues = options;
+                  });
+                },
+              ),
+              const Divider(),
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.center,
+                child: ButtonPrimary(
+                  label: TransactionsStrings.of(context)!.confirmFilter,
+                  onPressed: () {
+                    Navigator.pop(context, selectedValues);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

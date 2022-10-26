@@ -1,5 +1,7 @@
-import 'package:riverpod/riverpod.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod/riverpod.dart';
 
 final filterListProvider =
     StateNotifierProvider<FilterListNotifier, Set<String>>(
