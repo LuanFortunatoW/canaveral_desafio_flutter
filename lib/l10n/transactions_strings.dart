@@ -168,6 +168,18 @@ abstract class TransactionsStrings {
   /// In pt, this message translates to:
   /// **'Filtrar'**
   String get confirmFilter;
+
+  /// No description provided for @transferedFrom.
+  ///
+  /// In pt, this message translates to:
+  /// **'Transferido de'**
+  String get transferedFrom;
+
+  /// No description provided for @to.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para'**
+  String get to;
 }
 
 class _TransactionsStringsDelegate extends LocalizationsDelegate<TransactionsStrings> {

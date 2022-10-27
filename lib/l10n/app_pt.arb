@@ -23,5 +23,8 @@
   "titleBottomSheetFilter" : "Filtros",
   "transactionTitleFilter" : "Título",
   "transactionStatusFilter" : "Status",
-  "confirmFilter" : "Filtrar"
+  "confirmFilter" : "Filtrar",
+  "transferedFrom" : "Transferido de",
+  "to" : "Para"
+
 }

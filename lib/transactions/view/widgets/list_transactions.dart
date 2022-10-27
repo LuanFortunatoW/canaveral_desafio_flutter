@@ -3,10 +3,12 @@ import 'package:api_example/l10n/transactions_strings.dart';
 import 'package:api_example/transactions/providers/filter_list_provider.dart';
 import 'package:api_example/transactions/providers/list_all_transactions_provider.dart';
 import 'package:api_example/transactions/providers/text_filter_provider.dart';
+import 'package:api_example/transactions/view/widgets/bottom_sheet_transaction_info.dart';
 import 'package:flutter/material.dart';
 
 import 'package:nebraska/nebraska.dart';
 
+import '../../../shared/utils/chip_type_selector.dart';
 import '../../../shared/utils/formaters.dart';
 import '../../models/transaction_view_data.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -73,7 +75,7 @@ class ListTransactions extends ConsumerWidget {
   }
 }
 
-class _ListTileTransaction extends StatelessWidget {
+class _ListTileTransaction extends ConsumerWidget {
   const _ListTileTransaction({
     Key? key,
     required this.transaction,
@@ -82,7 +84,7 @@ class _ListTileTransaction extends StatelessWidget {
   final TransactionViewData transaction;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final NebraskaThemeData theme =
         NebraskaTheme.of(context).copyWith(ContextTheme.brand);
 
@@ -115,14 +117,18 @@ class _ListTileTransaction extends StatelessWidget {
               transaction.status.characters.first,
               transaction.status.characters.first.toUpperCase(),
             ),
-            type: transaction.status == 'created'
-                ? ChipStatusType.information
-                : transaction.status == 'processing'
-                    ? ChipStatusType.alert
-                    : transaction.status == 'processed'
-                        ? ChipStatusType.positive
-                        : ChipStatusType.negative,
+            type: ChipTypeSelector.getChipType(transaction.status),
           ),
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return BottomSheetTransactionInfo(
+                  transaction: transaction,
+                );
+              },
+            );
+          },
         ),
       ],
     );

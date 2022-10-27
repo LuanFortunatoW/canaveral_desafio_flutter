@@ -73,7 +73,7 @@ class _IconDetail extends StatelessWidget {
       width: 48,
       height: 48,
       decoration: BoxDecoration(
-        color: theme.colors.core.background.primary,
+        color: theme.colors.context.overPrimary,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(theme.sizes.radius.x400),
           topRight: Radius.circular(theme.sizes.radius.x400),
@@ -84,7 +84,7 @@ class _IconDetail extends StatelessWidget {
         angle: 15,
         child: NebraskaSvgIcon(
           asset: theme.icon.ba0040,
-          color: theme.colors.core.asset.others,
+          color: theme.colors.context.primary,
         ),
       ),
     );
