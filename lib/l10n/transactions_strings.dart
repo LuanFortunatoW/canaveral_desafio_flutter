@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -59,7 +61,8 @@ import 'transactions_strings_pt.dart';
 /// be consistent with the languages listed in the TransactionsStrings.supportedLocales
 /// property.
 abstract class TransactionsStrings {
-  TransactionsStrings(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  TransactionsStrings(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -67,7 +70,8 @@ abstract class TransactionsStrings {
     return Localizations.of<TransactionsStrings>(context, TransactionsStrings);
   }
 
-  static const LocalizationsDelegate<TransactionsStrings> delegate = _TransactionsStringsDelegate();
+  static const LocalizationsDelegate<TransactionsStrings> delegate =
+      _TransactionsStringsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -79,7 +83,8 @@ abstract class TransactionsStrings {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -87,9 +92,7 @@ abstract class TransactionsStrings {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('pt')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('pt')];
 
   /// No description provided for @languageSymbol.
   ///
@@ -182,33 +185,34 @@ abstract class TransactionsStrings {
   String get to;
 }
 
-class _TransactionsStringsDelegate extends LocalizationsDelegate<TransactionsStrings> {
+class _TransactionsStringsDelegate
+    extends LocalizationsDelegate<TransactionsStrings> {
   const _TransactionsStringsDelegate();
 
   @override
   Future<TransactionsStrings> load(Locale locale) {
-    return SynchronousFuture<TransactionsStrings>(lookupTransactionsStrings(locale));
+    return SynchronousFuture<TransactionsStrings>(
+        lookupTransactionsStrings(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_TransactionsStringsDelegate old) => false;
 }
 
 TransactionsStrings lookupTransactionsStrings(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'pt': return TransactionsStringsPt();
+    case 'pt':
+      return TransactionsStringsPt();
   }
 
   throw FlutterError(
-    'TransactionsStrings.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'TransactionsStrings.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
